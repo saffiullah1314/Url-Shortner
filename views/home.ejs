@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Url Shortner</title>
+</head>
+<body style="width: 100vw; height:100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; ">
+    <h1>Url Shortner</h1>
+    <form action="/url" method="POST" >
+        <input type="text" name="originalurl" placeholder="http://example.com" required style="padding: 3px 6px; align-items: center; width: 400px;">
+        <button type="submit">Generate</button>
+        <% if (locals.shorturl) { %>
+          <h2>shorturl : <a href="<%= shorturl %>"><%= shorturl %></a></h2>
+        <% } %>
+
+        <% if (locals.urls) { %>
+         <table>
+            <thead>
+                <th>s. no</th>
+                <th>originalurl</th>
+                <th>shorturl</th>
+                <th>clicks</th>
+            </thead>
+            <tbody>
+                <% urls.forEach((url , index) => { %>
+                 <tr><td><%= index + 1 %></td>
+                 <td><%= url.originalurl %></td>
+                 <td><%= url.shorturl %></td>
+                 <td><%= url.clicks %></td>
+                <% }) %></tr>
+            </tbody>
+         </table>
+        <% } %>
+    </form>
+</body>
+</html>
