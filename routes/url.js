@@ -1,8 +1,19 @@
 const express = require("express");
-const {createShortUrl , redirectShortUrl} = require("../controller/url")
+const { createShortUrl, redirectShortUrl } = require("../controllers/url");
+const { body } = require("express-validator");
+
 const router = express.Router();
 
-router.post('/' ,createShortUrl);
-router.get("/:shorturl" , redirectShortUrl);
+// POST / => Create Short URL
+router.post(
+  "/",
+  body("fullUrl")
+    .isURL()
+    .withMessage("Please enter a valid URL"),
+  createShortUrl
+);
 
-module.exports = router; 
+// GET /:shorturl => Redirect to Original URL
+router.get("/:shorturl", redirectShortUrl);
+
+module.exports = router;
