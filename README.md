@@ -38,6 +38,6 @@ A simple yet powerful **URL Shortener Web Application** built using:
 
 ## 🚀 Live Preview
 
-🔗 **Live Site:** [Click here to visit the live app](#)  
+🔗 **Live Site:** [Click here to visit the live app](https://url-shortner-production-ffdb.up.railway.app/user/signin)  
 ---
 
