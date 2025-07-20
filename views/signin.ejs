@@ -115,10 +115,12 @@
   <div class="card">
     <h2>🔐 Sign In</h2>
 
-  <% if (error && error.length > 0) { %>
-  <div style="color: red; background-color: #ffd4d4; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
-    <%= error %>
-  </div>
+ <% if (typeof errors !== "undefined" && errors.length > 0) { %>
+  <ul style="color: red; font-weight: bold; padding-left: 20px;">
+    <% errors.forEach(err => { %>
+      <li><%= err.msg %></li>
+    <% }) %>
+  </ul>
 <% } %>
 <% if (success && success.length > 0) { %>
   <div style="color: green; background-color: #d4ffd4; padding: 10px; border-radius: 5px; margin-bottom: 10px;">

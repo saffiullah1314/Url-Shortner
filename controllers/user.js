@@ -37,7 +37,7 @@ res.redirect("/signin");
   } catch (err) {
     console.error("❌ Signup error:", err.message);
     res.status(500).render("signup", {
-      errors: [{ msg: "Server error during signup" }],
+      errors: [{ msg: err.message }],
     });
   }
 };
@@ -80,7 +80,7 @@ const userSignIn = async (req, res) => {
     return res.redirect("/home");
   } catch (err) {
     console.error("❌ Signin error:", err.message);
-    req.flash("error", "Server error during signin.");
+    req.flash("error", err.message);
     return res.redirect("/user/signin");
   }
 };

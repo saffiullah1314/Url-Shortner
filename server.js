@@ -11,7 +11,7 @@ const userRouter = require("./routes/user");
 const staticRouter = require("./routes/static");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Set EJS as view engine
 app.set("view engine", "ejs");
