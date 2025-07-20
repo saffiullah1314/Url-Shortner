@@ -55,7 +55,7 @@ app.get("/", (req, res) => {
 app.use("/", urlRouter); // fallback for short url
 
 // Connect DB & Start server
-connectDb(process.env.DB_URL || "mongodb://localhost:27017/Url_shortner")
+connectDb(process.env.DB_URL || "mongodb+srv://saffiullah:$@ffiull@h3470@url-shortner-cluster.g655ut8.mongodb.net/?retryWrites=true&w=majority&appName=url-shortner-cluster")
   .then(() => {
     app.listen(PORT, () => {
       console.log(`✅ Server is running on http://localhost:${PORT}`);
