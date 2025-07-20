@@ -90,6 +90,30 @@
       color: #007bff;
       text-decoration: none;
     }
+.logout-form {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 1000;
+}
+
+.logout-button {
+  padding: 14px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.logout-button:hover {
+  background: #e60000;
+  transform: translateY(-2px);
+}
 
     table {
       width: 100%;
@@ -146,7 +170,9 @@
 
   <h1>🔗 URL Shortener</h1>
   <div class="welcome">Welcome, <%= user.username %> 👋</div>
-
+  <form action="/user/logout" method="GET" class="logout-form">
+  <button type="submit" class="logout-button">🚪 Logout</button>
+</form>
   <div class="card">
     <form action="/url" method="POST">
       <input type="text" name="fullUrl" placeholder="Enter your URL e.g. https://example.com" required />

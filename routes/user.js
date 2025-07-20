@@ -4,7 +4,13 @@ const { userSignUp, userSignIn, logout } = require("../controllers/user");
 const router = express.Router();
 
 router.get("/signin", (req, res) => {
-  res.render("signin");
+  const message = req.query.message;
+  const flashSuccess = message === "logout" ? "Logged out successfully." : null;
+
+  res.render("signin", {
+    success: flashSuccess,
+    error: req.flash("error"),
+  });
 });
 
 router.get("/signup", (req, res) => {

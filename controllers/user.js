@@ -61,6 +61,7 @@ const userSignIn = async (req, res) => {
     }
 
     const isMatch = await bcryptjs.compare(password, user.password);
+    console.log(isMatch)
 
     if (!isMatch) {
       req.flash("error", "Invalid credentials.");
@@ -75,6 +76,7 @@ const userSignIn = async (req, res) => {
     };
 
     req.flash("success", "Login successful!");
+    console.log("success")
     return res.redirect("/home");
   } catch (err) {
     console.error("❌ Signin error:", err.message);
@@ -84,10 +86,19 @@ const userSignIn = async (req, res) => {
 };
 
 
-// ✅ Logout Controller
 const logout = (req, res) => {
-  req.session.destroy(() => {
-    res.redirect("/login");
+  const username = req.session?.user?.username; // Optional: just for log
+  const redirectURL = "/signin?message=logout"; // ✅ Passing info via query string
+
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Logout error:", err);
+      return res.redirect("/home");
+    } else {
+      res.clearCookie("connect.sid");
+      console.log(`User ${username} logged out.`);
+      return res.redirect(redirectURL);
+    }
   });
 };
 

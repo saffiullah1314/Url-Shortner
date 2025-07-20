@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const Url = require("../model/url");
 
 const isAuthenticated = require("../middleware/auth"); // <-- Step 1: Import Middleware
 
 // Controller functions
 const {
-  handleHome,
   handleSignup,
   handleLogin
 } = require("../controllers/static");
@@ -17,7 +17,7 @@ router.get("/home",isAuthenticated, async (req, res) => {
 
     res.render("home", {
       user: {
-        username: req.session.username,
+        username: req.session.user.username,
       },
       urls,
       success: req.flash("success"),
