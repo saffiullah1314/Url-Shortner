@@ -37,7 +37,7 @@ res.redirect("/signin");
   } catch (err) {
     console.error("❌ Signup error:", err.message);
     res.status(500).render("signup", {
-      errors: [{ msg: err.message }],
+      errors: [{ msg: "Email already exists. Please use a different email address." }],
     });
   }
 };
@@ -56,9 +56,9 @@ const userSignIn = async (req, res) => {
     const user = await User.findOne({ username }).select("+password");
 
     if (!user || !user.password) {
-      req.flash("error", "Invalid credentials.");
-      return res.redirect("/user/signin");
-    }
+  req.session.errorMessage = "❌ Invalid credentials.";
+  return res.redirect("/user/signin");
+}
 
     const isMatch = await bcryptjs.compare(password, user.password);
     console.log(isMatch)
